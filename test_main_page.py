@@ -1,10 +1,10 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from .pages.main_page import MainPage
 import time
 
 def test_guest_should_see_login_link(browser):
     link = "http://selenium1py.pythonanywhere.com/"
-    browser.get(link)
-    browser.find_element(By.CSS_SELECTOR, "#login_link")
-    time.sleep(5)
+    page = MainPage(browser, link)   # инициализируем Page Object, передаем в конструктор экземпляр драйвера и url адрес 
+    page.open()                      # открываем страницу
+    page.go_to_login_page()          # выполняем метод страницы — переходим на страницу логина
