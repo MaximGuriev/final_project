@@ -13,4 +13,5 @@ class ProductPageLocators():
     BOOK_PRICE = (By.CSS_SELECTOR, "p.price_color")
     BOOK_NAME = (By.CSS_SELECTOR, "div.col-sm-6.product_main h1")
     ADD_BOOK = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in:nth-child(1) div.alertinner strong")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in:nth-child(1)")
     
