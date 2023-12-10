@@ -29,4 +29,3 @@ class ProductPage(BasePage):
     def should_message_disappeared(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Messages is disappeared after adding product to basket"
    
-   

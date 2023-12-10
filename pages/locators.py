@@ -15,3 +15,9 @@ class ProductPageLocators():
     ADD_BOOK = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in:nth-child(1) div.alertinner strong")
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, ".alert.alert-safe.alert-noicon.alert-success.fade.in:nth-child(1)")
     
+    VIEW_BASKET = (By.CSS_SELECTOR, "span.btn-group a.btn.btn-default")
+    BASKET_EMPTY = (By.CSS_SELECTOR, "#content_inner a")
+    
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
