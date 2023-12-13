@@ -7,14 +7,14 @@ from .pages.product_page import ProductPage
 import time
 
 
-# @pytest.mark.parametrize('link', ["0","1","2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"])
-# def test_guest_can_add_product_to_basket(browser, link):
-    # link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link}"
-    # page = ProductPage(browser, link)
-    # page.open()
-    # time.sleep(2)
-    # page.add_to_basket()
-    # time.sleep(2)
+@pytest.mark.parametrize('link', ["0","1","2", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"])
+def test_guest_can_add_product_to_basket(browser, link):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link}"
+    page = ProductPage(browser, link)
+    page.open()
+    time.sleep(2)
+    page.add_to_basket()
+    time.sleep(2)
     
 @pytest.mark.xfail    
 def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
@@ -54,21 +54,41 @@ def test_guest_can_go_to_login_page_from_product_page (browser):
     page.open()
     page.go_to_login_page()
     time.sleep(2)
-    
- 
-def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/en-gb"
-    page = ProductPage(browser, link)
-    page.open()
-    page.find_view_bsaket_button()
-    page.basket_is_empty()
-    time.sleep(2)
-    
- 
-def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+   
+@pytest.mark.login   
+class TestUserAddToBasketFromProductPage():
+    def setup(self):
+        self.product = ProductFactory(title = "Best book created by robot")
+        # создаем по апи
+        self.link = self.product.link
+        yield
+        # после этого ключевого слова начинается teardown
+        # выполнится после каждого теста в классе
+        # удаляем те данные, которые мы создали 
+        self.product.delete()
+        
+    def test_user_cant_see_product_in_basket_opened_from_main_page(browser):
+        link = "http://selenium1py.pythonanywhere.com/en-gb"
+        page = ProductPage(browser, link)
+        page.open()
+        page.find_view_bsaket_button()
+        page.basket_is_empty()
+        time.sleep(2)
+        
+     
+    def test_user_cant_see_product_in_basket_opened_from_product_page(browser):
+        link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+        page = ProductPage(browser, link)
+        page.open()
+        page.find_view_bsaket_button()
+        page.basket_is_empty()
+        time.sleep(2)
+        
+def test_registration(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     page = ProductPage(browser, link)
     page.open()
-    page.find_view_bsaket_button()
-    page.basket_is_empty()
-    time.sleep(2)
+    page.register_new_user()
+    time.sleep(5)
+    page.should_be_authorized_user()
+    time.sleep(5)

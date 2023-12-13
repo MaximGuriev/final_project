@@ -21,3 +21,11 @@ class ProductPageLocators():
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
+    LOGIN_PAGE = (By.CSS_SELECTOR, "#login_link")
+    
+    EMAIL = (By.CSS_SELECTOR, "#id_registration-email")
+    PASWORD = (By.CSS_SELECTOR, "#id_registration-password1")
+    CONFIRM_PASWORD = (By.CSS_SELECTOR, "#id_registration-password2")
+    
+    REGISTER_BUTTON = (By.CSS_SELECTOR, ".col-sm-6.register_form .btn.btn-lg.btn-primary")
